@@ -50,6 +50,6 @@ struct CustomListRowView: View {
 
 #Preview {
     List() {
-        CustomListRowView(rowLabel: "Designer", rowIcon: "paintpalette", rowContent: "John Doe", rowTintColor: .pink)
+        CustomListRowView(rowLabel: "Designes", rowIcon: "paintpalette", rowContent: "John Doe", rowTintColor: .pink)
     }
 }
