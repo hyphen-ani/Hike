@@ -35,7 +35,7 @@ struct CustomListRowView: View {
         } label : {
             HStack {
                 ZStack{
-                    RoundedRectangle(cornerRadius: 8)
+                    RoundedRectangle(cornerRadius: 9)
                         .frame(width: 30, height: 30)
                         .foregroundColor(rowTintColor)
                     Image(systemName: rowIcon)
