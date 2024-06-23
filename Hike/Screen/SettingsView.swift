@@ -8,6 +8,11 @@
 import SwiftUI
 
 struct SettingsView: View {
+    
+    //MARK: - PROPERTIES
+    
+    private let alternateAppIcons: [String] = ["AppIcon-MagnifyingGlass", "AppIcon-Map", "AppIcon-Mushroom", "AppIcon-Camera", "AppIcon-Backpack", "AppIcon-Campfire"]
+    
     var body: some View {
         List{
             
@@ -60,6 +65,48 @@ struct SettingsView: View {
             
             //MARK: Section Icons
             
+            Section(header: Text("Alternate Icons")){
+                
+                ScrollView(.horizontal, showsIndicators: false){
+                    HStack(spacing:12) {
+                        ForEach(alternateAppIcons.indices, id:\.self) { item in
+                            Button {
+                                print("Icon \(alternateAppIcons[item]) Was Pressed")
+                                
+                                UIApplication.shared.setAlternateIconName(alternateAppIcons[item]) {
+                                    error in
+                                    
+                                    if error != nil {
+                                        print("Failed Request to update the app's icon: \(String(describing: error?.localizedDescription))")
+                                    }else{
+                                        print("Sucess, You Have Changes to \(alternateAppIcons[item])")
+                                    }
+                                }
+                                
+                            }label: {
+                                Image("\(alternateAppIcons[item])-Preview")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 80, height: 90)
+                                    .cornerRadius(18)
+                                
+                            }
+                        .buttonStyle(.borderless)
+                        }
+                    }
+                }//: SCROLL VIEW
+                .padding(.top, 12)
+                
+                Text("Let's Change How It Looks")
+                    .frame(minWidth: 0, maxWidth: .infinity)
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(.secondary)
+                    .font(.footnote)
+                    .padding(.bottom, 12)
+            } //: SECTION
+            .listRowSeparator(.hidden)
+            
+            
             //MARK: Section About
             
             Section(
@@ -83,8 +130,7 @@ struct SettingsView: View {
                 
                 CustomListRowView(rowLabel: "Developer", rowIcon: "ellipsis.curlybraces", rowContent: "Hallucinate Labs", rowTintColor: .mint)
                 
-                CustomListRowView(rowLabel: "Designer", rowIcon: "paintpalette", rowContent: "Anirudh Nandy", rowTintColor: .pink)
-                
+                CustomListRowView(rowLabel: "Website", rowIcon: "globe", rowTintColor: .indigo, rowLinkLabel: "Hallucinate Labs", rowLinkDestination: "https://google.com")
             }
         }//: List
 

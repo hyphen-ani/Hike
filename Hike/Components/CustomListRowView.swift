@@ -29,7 +29,11 @@ struct CustomListRowView: View {
                 Text(rowContent!)
                     .foregroundColor(.primary)
                 .fontWeight(.heavy)
-            } else {
+            } else if (rowLinkLabel != nil && rowLinkDestination != nil){
+                Link(rowLinkLabel!, destination: URL(string: rowLinkDestination!)!)
+                    .foregroundColor(.pink)
+                    .fontWeight(.heavy)
+            }else {
                 /*@START_MENU_TOKEN@*/EmptyView()/*@END_MENU_TOKEN@*/
             }
         } label : {
@@ -50,6 +54,6 @@ struct CustomListRowView: View {
 
 #Preview {
     List() {
-        CustomListRowView(rowLabel: "Designes", rowIcon: "paintpalette", rowContent: "John Doe", rowTintColor: .pink)
+        CustomListRowView(rowLabel: "Website", rowIcon: "globe", rowContent: nil, rowTintColor: .pink, rowLinkLabel: "Halluninate Labs", rowLinkDestination: "https://google.com")
     }
 }
